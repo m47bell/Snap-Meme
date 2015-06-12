@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,6 +37,7 @@ public class VanillaActivity extends Activity {
     EditText topRow;
     EditText bottomRow;
     private Button shareBt;
+    private Button saveBt;
 
 
     @Override
@@ -81,8 +80,22 @@ public class VanillaActivity extends Activity {
             }
         });
 
+        //toDo: Marbella
+
+        saveBt = (Button) findViewById(R.id.btSave);
+        saveBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveProcess(v);
+            }
+        });
     }
 
+    public void saveProcess(View v){
+
+
+
+    }
 
     public void process(View view){
 
@@ -183,5 +196,9 @@ public class VanillaActivity extends Activity {
         this.sendBroadcast(mediaScanIntent);
 
     }
+
+
+
+
 
 }
