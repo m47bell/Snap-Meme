@@ -102,7 +102,7 @@ public class DemotivationalActivity extends Activity {
 
     }
 
-
+//takes in the view parameter and screen width and height to covert screenshot into bitmap and returns a  URI
     public Uri makeViewBitmap(View view, int width, int height) {
         // VIEW TO BITMAP
         Bitmap viewBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);

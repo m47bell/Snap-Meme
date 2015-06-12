@@ -49,21 +49,25 @@
 
     </LinearLayout>
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="save"
-        android:id="@+id/bt_save_popo"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/linear_pop_layout">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Share"
-        android:id="@+id/bt_share_popo"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:id="@+id/bt_save_popo"
+            style="@style/sciCal"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share"
+            android:id="@+id/bt_share_popo"
+            style="@style/sciCal"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

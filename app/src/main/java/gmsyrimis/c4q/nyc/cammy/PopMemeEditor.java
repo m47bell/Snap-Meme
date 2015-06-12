@@ -7,14 +7,12 @@ import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -68,10 +66,12 @@ public class PopMemeEditor extends Activity {
         int popId = Integer.parseInt(imageUri);
         ivCustomPopular.setImageDrawable(getResources().getDrawable(popId));
         // OLD SHARE BUTTON
+
         shareBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent share = new Intent(Intent.ACTION_SEND);
+                Intent share = new Intent();
+                share.setAction(Intent.ACTION_SEND);
                 share.setType("image/jpeg");
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -138,6 +138,7 @@ public class PopMemeEditor extends Activity {
         }
         // URI TO BE PASSED
         Uri resultUri = Uri.fromFile(outputFile);
+        Toast.makeText(getApplicationContext(), "File saved to: " + imageUri.toString(), Toast.LENGTH_LONG).show();
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         mediaScanIntent.setData(resultUri);
         this.sendBroadcast(mediaScanIntent);

@@ -48,6 +48,11 @@ public class VanillaActivity extends Activity {
 
         ivVanilla = (LinearLayout) findViewById(R.id.vanilla_custom_image);
 
+        topRow = (EditText) findViewById(R.id.vanilla_top_text);
+        topRow.setText(topText);
+        bottomRow = (EditText) findViewById(R.id.vanilla_bottom_text);
+        bottomRow.setText(bottomText);
+
         if (savedInstanceState == null) {
             imageUri = getIntent().getStringExtra(IMAGE_URI_KEY);
             topText = "";
@@ -57,12 +62,6 @@ public class VanillaActivity extends Activity {
             topText = savedInstanceState.getString(TOP_TEXT_KEY);
             bottomText = savedInstanceState.getString(BOTTOM_TEXT_KEY);
         }
-
-        topRow = (EditText) findViewById(R.id.vanilla_top_text);
-        topRow.setText(topText);
-        bottomRow = (EditText) findViewById(R.id.vanilla_bottom_text);
-        bottomRow.setText(bottomText);
-
         try {
             bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(imageUri));
         } catch (IOException e) {
@@ -82,12 +81,12 @@ public class VanillaActivity extends Activity {
         });
 
         //toDo: Marbella
-
+//connecting the save button onclick listener to save it method
         saveBt = (Button) findViewById(R.id.btSave);
         saveBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveIt(v,metrics.widthPixels,metrics.heightPixels);
+                saveIt(bitmap);
             }
         });
     }
@@ -142,7 +141,7 @@ public class VanillaActivity extends Activity {
         outState.putString(TOP_TEXT_KEY, topText);
         outState.putString(BOTTOM_TEXT_KEY, bottomText);
     }
-
+//formats the screenview into a bitmap screenshot
     public static Bitmap screenView(View v, int width, int height) {
         Bitmap screenshot = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(screenshot);
@@ -151,9 +150,10 @@ public class VanillaActivity extends Activity {
         return screenshot;
     }
 
-    public void saveIt(View memeView, int width, int height) {
+//receives a screenshot bitmap  of the view into a bitmap and saves image to SD
+    public void saveIt(Bitmap screenshot) {
 
-        Bitmap sharable = screenView(memeView, width, height);
+        Bitmap sharable = screenshot;
 
         String imageFileName = new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss").format(new Date());
 

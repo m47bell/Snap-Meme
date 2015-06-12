@@ -3,6 +3,17 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar">
         <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="sciCal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/my_shape</item>
+        <item name="android:textColor">#ffffffff</item>
     </style>
 
 </resources>
