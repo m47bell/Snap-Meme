@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -68,7 +69,7 @@ public class VanillaActivity extends Activity {
             e.printStackTrace();
         }
 
-        DisplayMetrics metrics = getBaseContext().getResources().getDisplayMetrics();
+        final DisplayMetrics metrics = getBaseContext().getResources().getDisplayMetrics();
         bitmap = Bitmap.createScaledBitmap(bitmap, metrics.widthPixels, metrics.heightPixels, true);
         ivVanilla.setBackground(new FakeBitmapDrawable(bitmap, 0));
 
@@ -86,16 +87,11 @@ public class VanillaActivity extends Activity {
         saveBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveProcess(v);
+                saveIt(v,metrics.widthPixels,metrics.heightPixels);
             }
         });
     }
 
-    public void saveProcess(View v){
-
-
-
-    }
 
     public void process(View view){
 
@@ -157,7 +153,6 @@ public class VanillaActivity extends Activity {
 
     public void saveIt(View memeView, int width, int height) {
 
-
         Bitmap sharable = screenView(memeView, width, height);
 
         String imageFileName = new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss").format(new Date());
@@ -188,6 +183,7 @@ public class VanillaActivity extends Activity {
                 e.printStackTrace();
             }
         }
+        Toast.makeText(getApplicationContext(), "File saved to: " + imageUri.toString(), Toast.LENGTH_LONG).show();
 
         Uri resultUri = Uri.fromFile(outputFile);
         // this part is adding the completed meme picture to the gallery
@@ -197,8 +193,8 @@ public class VanillaActivity extends Activity {
 
     }
 
-
-
-
-
 }
+
+
+
+
